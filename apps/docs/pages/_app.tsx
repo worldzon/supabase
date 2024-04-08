@@ -7,16 +7,18 @@ import '../styles/prism-okaidia.scss'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { createClient } from '@supabase/supabase-js'
 import { QueryClientProvider, useQueryClient } from '@tanstack/react-query'
-import { AuthProvider, ThemeProvider, useTelemetryProps, useThemeSandbox } from 'common'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState, type PropsWithChildren } from 'react'
+
+import { AuthProvider, ThemeProvider, useTelemetryProps, useThemeSandbox } from 'common'
+import MetaFaviconsPagesRouter from 'common/MetaFavicons/pages-router'
 import { PortalToast } from 'ui'
 import { PromoToast } from 'ui-patterns/PromoToast'
 import { CommandMenuProvider } from 'ui-patterns/Cmdk'
 import { useConsent } from 'ui-patterns/ConsentToast'
 
-import MetaFaviconsPagesRouter from 'common/MetaFavicons/pages-router'
+import { EditLinksProvider } from '~/features/EditLink'
 import SiteLayout from '~/layouts/SiteLayout'
 import { BUILD_PREVIEW_HTML, IS_PLATFORM, IS_PREVIEW } from '~/lib/constants'
 import { unauthedAllowedPost } from '~/lib/fetch/fetchWrappers'
@@ -226,13 +228,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           <SignOutHandler>
             <ThemeProvider defaultTheme="system" enableSystem disableTransitionOnChange>
               <CommandMenuProvider site="docs">
-                <div className="h-screen flex flex-col">
-                  <SiteLayout>
-                    <PortalToast />
-                    <PromoToast />
-                    <Component {...pageProps} />
-                  </SiteLayout>
-                </div>
+                <EditLinksProvider>
+                  <div className="h-screen flex flex-col">
+                    <SiteLayout>
+                      <PortalToast />
+                      <PromoToast />
+                      <Component {...pageProps} />
+                    </SiteLayout>
+                  </div>
+                </EditLinksProvider>
               </CommandMenuProvider>
             </ThemeProvider>
           </SignOutHandler>
