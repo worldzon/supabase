@@ -25,6 +25,7 @@ import RefHeaderSection from './reference/RefHeaderSection'
 // Other components
 import AuthProviders from '~/components/AuthProviders'
 import { CostWarning } from '~/components/AuthSmsProviderConfig/AuthSmsProviderConfig.Warnings'
+import { ErrorCodesTable } from '~/components/ErrorCodes.Table'
 import Options from '~/components/Options'
 import Param from '~/components/Params'
 import { ProjectConfigVariables } from '~/components/ProjectConfigVariables'
@@ -100,6 +101,7 @@ const components = {
   CodeBlock,
   CostWarning,
   DatabaseSetup,
+  ErrorCodesTable,
   Extensions,
   GetSessionWarning,
   GlassPanel,
