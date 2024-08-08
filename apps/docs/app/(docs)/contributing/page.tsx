@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { ContributingToc } from '~/app/contributing/ContributingToC'
+import { ContributingToc } from '~/app/(docs)/contributing/ContributingToC'
 import { MDXProviderGuides } from '~/features/docs/GuidesMdx.client'
 import { MDXRemoteBase } from '~/features/docs/MdxBase'
 import { SidebarSkeleton } from '~/layouts/MainSkeleton'

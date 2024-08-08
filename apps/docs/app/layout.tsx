@@ -1,58 +1,12 @@
-import '@code-hike/mdx/styles'
-import 'config/code-hike.scss'
-import '../styles/main.scss'
-import '../styles/new-docs.scss'
-import '../styles/prism-okaidia.scss'
+import type { ReactNode } from 'react'
 
-import { genFaviconData } from 'common/MetaFavicons/app-router'
-import { type Metadata, type Viewport } from 'next'
+import { AuthContainer } from '~/features/auth/auth.client'
+import { QueryClientProvider } from '~/features/data/queryClient.client'
 
-import { BASE_PATH } from '~/lib/constants'
-import { GlobalProviders } from '~/features/app.providers'
-import { TopNavSkeleton } from '~/layouts/MainSkeleton'
-
-const metadata: Metadata = {
-  applicationName: 'Supabase Docs',
-  title: 'Supabase Docs',
-  description:
-    'Supabase is an open source Firebase alternative providing all the backend features you need to build a product.',
-  metadataBase: new URL('https://supabase.com'),
-  icons: genFaviconData(BASE_PATH),
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    type: 'article',
-    authors: 'Supabase',
-    url: `${BASE_PATH}`,
-    images: `${BASE_PATH}/img/supabase-og-image.png`,
-    publishedTime: new Date().toISOString(),
-    modifiedTime: new Date().toISOString(),
-  },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@supabase',
-    creator: '@supabase',
-    images: `${BASE_PATH}/img/supabase-og-image.png`,
-  },
-}
-
-const viewport: Viewport = {
-  themeColor: '#1E1E1E',
-}
-
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export default function GlobalProvidersLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <GlobalProviders>
-          <TopNavSkeleton>{children}</TopNavSkeleton>
-        </GlobalProviders>
-      </body>
-    </html>
+    <QueryClientProvider>
+      <AuthContainer>{children}</AuthContainer>
+    </QueryClientProvider>
   )
 }
-
-export { metadata, viewport }
-export default RootLayout
