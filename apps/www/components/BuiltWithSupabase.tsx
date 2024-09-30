@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { Button } from 'ui'
 
-import ExampleCard from '../ExampleCard'
-import SectionContainer from '../Layouts/SectionContainer'
-
 import Examples from 'data/Examples'
 import { Github } from 'icons'
+import ExampleCard from './ExampleCard'
+import SectionContainer from './Layouts/SectionContainer'
 
 const BuiltWithSupabase = () => {
   return (
