@@ -23,6 +23,8 @@
         "NEXT_PUBLIC_*",
         "NODE_ENV",
         "OPENAI_API_KEY",
+        "POSTHOG_API_KEY",
+        "POSTHOG_PROJECT_API_KEY",
         "SUPABASE_SECRET_KEY"
       ],
       "inputs": ["$TURBO_DEFAULT$", "../../examples"],
