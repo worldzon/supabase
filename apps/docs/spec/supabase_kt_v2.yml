@@ -28,26 +28,26 @@ functions:
 
       ### OAuth and OTP link verification
 
-      [supabase-kt](https://github.com/supabase-community/supabase-kt) provides several platform implementations for OAuth and OTP link verification. 
+      [supabase-kt](https://github.com/supabase-community/supabase-kt) provides several platform implementations for OAuth and OTP link verification.
 
-      **On Desktop platforms (JVM, MacOS\*, Linux)**, it uses a HTTP Callback Server to receive the session data from a successful OAuth login. The success page can be customized via `AuthConfig#httpCallbackConfig` \
+      **On Desktop platforms (JVM, macOS\*, Linux)**, it uses a HTTP Callback Server to receive the session data from a successful OAuth login. The success page can be customized via `AuthConfig#httpCallbackConfig` \
       \* If no deeplinks are being used.
 
-      *Note: OTP link verification such as sign ups are not supported on JVM. You may have to send a verification token rather than a url in your email. To send the token, rather than a redirect url, change `{{ .ConfirmationURL }}` in your sign up email to `{{ .Token }}`* 
+      *Note: OTP link verification such as sign ups are not supported on JVM. You may have to send a verification token rather than a url in your email. To send the token, rather than a redirect url, change `{{ .ConfirmationURL }}` in your sign up email to `{{ .Token }}`*
 
-      **On Android, iOS & MacOS**, OAuth and OTP verification use deeplinks. Refer to the guide below on how to setup deeplinks. Alternatively you can use [Native Google Auth](/docs/guides/auth/social-login/auth-google?platform=android). \
+      **On Android, iOS & macOS**, OAuth and OTP verification use deeplinks. Refer to the guide below on how to setup deeplinks. Alternatively you can use [Native Google Auth](/docs/guides/auth/social-login/auth-google?platform=android). \
       **On JS**, it uses the website origin as the callback url. Session importing gets handled automatically. \
-      **Windows, tvOS, watchOS & Linux** currently have no default implementation. Feel free to create a PR. 
+      **Windows, tvOS, watchOS & Linux** currently have no default implementation. Feel free to create a PR.
 
       You always make your own implementation and use `auth.parseSessionFromFragment(fragment)` or `auth.parseSessionFromUrl(url)` to let [supabase-kt](https://github.com/supabase-community/supabase-kt) handle the parsing after receiving a callback.
       Then you can simply use `auth.importSession(session)`.
 
       ### Configure deeplink callbacks for Authentication
 
-      Deeplinks are supported on Android, iOS and MacOS.
+      Deeplinks are supported on Android, iOS and macOS.
       1. **Set up a deeplink** \
       On Android, set up a [deeplink](https://developer.android.com/training/app-links/deep-linking) in your Android manifest. \
-      On iOS and MacOS, set up a [url scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app).
+      On iOS and macOS, set up a [url scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app).
       2. **Add your deeplink to the [redirect URLs](https://supabase.com/dashboard/project/_/auth/url-configuration)** \
       **Pattern**: scheme://host
       3. **Configure the Auth plugin**
@@ -64,7 +64,7 @@ functions:
       4. **Call platform specific function on startup** \
       On Android: `supabase.handleDeeplinks(intent)` \
       If you don't want a separate activity, just call this function at the top of your `onCreate` function in your MainActivity. \
-      On iOS/MacOS: `supabase.handleDeeplinks(url)`
+      On iOS/macOS: `supabase.handleDeeplinks(url)`
 
       Then you can log in using OAuth:
       ```kotlin
@@ -449,8 +449,8 @@ functions:
         code: |
           ```kotlin
           val city = City(name = "The Shire", countryId = 554)
-          val result = supabase.from("cities").insert(city) { 
-              select() 
+          val result = supabase.from("cities").insert(city) {
+              select()
           }.decodeSingle<City>()
           ```
       - id: bulk-create
@@ -2219,7 +2219,7 @@ functions:
           supabase.from("countries").select {
               filter {
                  filter(column = "name", operator = FilterOperator.IN, value = "('Algeria', 'Japan')")
-              } 
+              }
           }
           ```
         data:
@@ -3284,7 +3284,7 @@ functions:
     title: 'Verify OTPs'
     $ref: '@supabase/gotrue-js.GoTrueClient.verifyOtp'
     notes: |
-      - Verifying an OTP is done through either `verifyPhoneOtp` or `verifyEmailOtp`.     
+      - Verifying an OTP is done through either `verifyPhoneOtp` or `verifyEmailOtp`.
       - The verification type used should be determined based on the corresponding auth method called before using `verifyPhoneOtp`/`verifyEmailOtp` to sign up / sign-in a user.
     params:
       - name: type
@@ -3803,7 +3803,7 @@ functions:
         code: |
           ```kotlin
           val factor = supabase.auth.mfa.enroll(factorType = FactorType.Phone, friendlyName = "Your friendly Name") {
-                phone = "+123456789" 
+                phone = "+123456789"
           }
 
           // Use the id to create a challenge and send an SMS with a code to the user.
@@ -4591,7 +4591,7 @@ functions:
           }
 
           //if you want more control and want to receive the raw data, use the `presenceChangeFlow` method
-          val presenceFlow = channel.presenceDataFlow<PresenceState>() 
+          val presenceFlow = channel.presenceDataFlow<PresenceState>()
 
           //Collect the flow
           presenceFlow.onEach {
